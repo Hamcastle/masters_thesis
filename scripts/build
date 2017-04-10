@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Clear out aux files first
+sudo rm ~/Dropbox/masters_document/chapters/*.aux
+
+BASEDIR=$(dirname $0)
+cd $BASEDIR
+cd ..
+
+# Build the dissertation.
+xelatex dissertation
+bibtex dissertation
+xelatex dissertation
+xelatex dissertation
+
+# Hide the log.
+mv "dissertation.log" ".logged"
